@@ -51,14 +51,18 @@ export class AppComponent implements OnInit, AfterViewInit {
   @HostListener('window:keydown', ['$event'])
   onPausePress(e: KeyboardEvent) {
     if (e.key == 'p') {
-      this.paused = !this.paused;
-      if (this.paused) {
-        this.lastTime = 0;
-        window.cancelAnimationFrame(this.currentAnimationFrameId as number);
-      }
-      if (!this.paused) {
-        window.requestAnimationFrame(this.update.bind(this));
-      }
+      this.pauseGame();
+    }
+  }
+
+  pauseGame() {
+    this.paused = !this.paused;
+    if (this.paused) {
+      this.lastTime = 0;
+      window.cancelAnimationFrame(this.currentAnimationFrameId as number);
+    }
+    if (!this.paused) {
+      window.requestAnimationFrame(this.update.bind(this));
     }
   }
 

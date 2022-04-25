@@ -3,8 +3,9 @@
     <div>{{ playerScore }}</div>
     <div>{{ computerScore }}</div>
   </div>
-  <div *ngIf="paused" class="pause">PAUSED</div>
+  <div *ngIf="paused" class="pause-text">PAUSED</div>
   <app-ball></app-ball>
   <app-paddle #player [name]="'player'" [side]="'left'"></app-paddle>
   <app-paddle #computer [name]="'computer'" [side]="'right'"></app-paddle>
 </div>
+<button class="pause-button" (click)="pauseGame()">{{paused ? 'UNPAUSE' : 'PAUSE'}}</button>
