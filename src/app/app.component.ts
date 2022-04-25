@@ -52,7 +52,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   onPausePress(e: KeyboardEvent) {
     if (e.key == 'p') {
       this.paused = !this.paused;
-      this.timescale = this.paused ? 0 : 1;
+      if (this.paused) {
+        this.lastTime = 0;
+        window.cancelAnimationFrame(this.currentAnimationFrameId as number);
+      }
+      if (!this.paused) {
+        window.requestAnimationFrame(this.update.bind(this));
+      }
     }
   }
 
